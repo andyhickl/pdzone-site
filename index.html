@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDZone · Exercise for Parkinson's</title>
+<meta name="description" content="PDZone turns the Parkinson's exercise trials into a plan you can follow on iPhone and Apple Watch, and tracks whether each workout met it.">
+<meta name="theme-color" content="#17111A">
+<link rel="icon" href="img/icon.png">
+<meta property="og:title" content="PDZone · Exercise for Parkinson's">
+<meta property="og:description" content="The exercise trials for Parkinson's, turned into a plan you can follow and track.">
+<meta property="og:image" content="img/reel-poster.jpg">
+<style>
+@font-face { font-family: "Bricolage Grotesque"; src: url("fonts/BricolageGrotesque.ttf") format("truetype"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("fonts/Inter.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+:root {
+  --ground: #17111A; --surface: #231A27; --raised: #2E2433; --line: #3A2D40;
+  --ink: #F5EFF2; --muted: #B7A9B6; --tulip: #FF4D5E; --on-tulip: #17111A;
+  --sky: #4DB5E6; --sky-text: #7CCBEE; --amber: #FFB547;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--ground); color: var(--ink); font-family: Inter, system-ui, sans-serif; font-size: 17px; line-height: 1.55; }
+a { color: var(--sky-text); }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--sky-text); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 700; line-height: 1.1; margin: 0; }
+h1 { font-size: clamp(38px, 7vw, 68px); letter-spacing: -0.01em; }
+h2 { font-size: clamp(28px, 4.4vw, 42px); }
+h3 { font-size: 24px; }
+p { margin: 0; }
+.label { font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tulip); }
+.muted { color: var(--muted); }
+header.top { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 700; font-size: 24px; color: var(--ink); text-decoration: none; }
+.brand svg { width: 34px; height: 34px; }
+.button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 999px; background: var(--tulip); color: var(--on-tulip); font-weight: 600; font-size: 17px; text-decoration: none; border: 0; cursor: pointer; font-family: inherit; }
+.button:hover { color: var(--on-tulip); filter: brightness(1.08); }
+.button.quiet { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px #C9CED6; }
+.hero { display: grid; grid-template-columns: 1fr; gap: 40px; padding: 40px 0 72px; align-items: center; }
+.hero .lede { font-size: 20px; color: var(--muted); margin-top: 20px; max-width: 34em; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.hero .status { margin-top: 18px; font-size: 14px; color: var(--muted); }
+.reel { justify-self: center; width: min(320px, 78vw); aspect-ratio: 9 / 16; border-radius: 30px; overflow: hidden; background: #000; box-shadow: 0 0 0 1px var(--line); }
+.reel video { width: 100%; height: 100%; display: block; object-fit: cover; }
+section { padding: 64px 0; border-top: 1px solid var(--line); }
+.evidence { display: grid; gap: 28px; }
+.evidence .big { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; }
+.evidence .big em { font-style: normal; color: var(--tulip); }
+.trials { display: grid; gap: 12px; }
+.trial { background: var(--surface); border-radius: 20px; padding: 18px 20px; display: grid; gap: 4px; }
+.trial b { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 20px; }
+.trial span { color: var(--muted); font-size: 15px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 999px; margin-right: 10px; }
+.feature { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
+.feature .copy { display: grid; gap: 14px; }
+.feature .copy p { color: var(--muted); max-width: 32em; }
+.feature ul { margin: 0; padding-left: 20px; color: var(--muted); display: grid; gap: 6px; }
+.phone { justify-self: center; width: min(300px, 74vw); border-radius: 34px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); background: var(--ground); }
+.phone img { width: 100%; display: block; }
+.watch { justify-self: center; width: min(250px, 62vw); border-radius: 58px; padding: 16px; background: #000; box-shadow: 0 0 0 2px var(--line); }
+.watch img { width: 100%; display: block; border-radius: 44px; }
+.signup { background: var(--surface); border-radius: 28px; padding: 32px 24px; display: grid; gap: 22px; }
+form { display: grid; gap: 16px; max-width: 520px; }
+label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+input[type=email], select { min-height: 48px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--ground); color: var(--ink); padding: 0 14px; font: inherit; font-weight: 400; width: 100%; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--muted); font-size: 14px; }
+.check input { width: 22px; height: 22px; margin: 0; flex-shrink: 0; accent-color: var(--tulip); }
+.note { font-size: 14px; color: var(--muted); }
+#result { min-height: 24px; font-weight: 600; }
+footer { padding: 40px 0 64px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: grid; gap: 12px; }
+footer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (min-width: 860px) {
+  .hero { grid-template-columns: 1.25fr 1fr; padding: 56px 0 96px; }
+  .evidence { grid-template-columns: 1.2fr 1fr; align-items: start; }
+  .feature { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .feature.flip .copy { order: 2; }
+  .signup { padding: 48px; grid-template-columns: 1fr 1fr; align-items: start; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="PDZone">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M26 80 L50 60 L74 80" stroke="#4DB5E6"/><path d="M26 60 L50 40 L74 60" stroke="#FF4D5E"/><path d="M26 40 L50 20 L74 40" stroke="#FFB547"/></g></svg>
+      PDZone
+    </a>
+    <a class="button quiet" href="#signup">Get updates</a>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="label">Exercise for Parkinson's</p>
+        <h1 style="margin-top: 12px">The exercise trials, turned into a plan you can follow.</h1>
+        <p class="lede">PDZone asks five questions, matches you to a published exercise protocol, sets your heart-rate target from your own numbers, and tracks whether each workout met it. On iPhone and Apple Watch.</p>
+        <div class="actions">
+          <a class="button" href="#signup">Tell me when it's ready</a>
+          <a class="button quiet" href="#how">How it works</a>
+        </div>
+        <p class="status">In private testing. Not yet on the App Store.</p>
+      </div>
+      <div class="reel">
+        <video controls playsinline preload="metadata" poster="img/reel-poster.jpg" aria-label="A 100-second film about PDZone, with music and no speech. Everything it shows is described on this page.">
+          <source src="pdzone-reel.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <section class="evidence" aria-labelledby="why">
+      <div>
+        <p class="label">Why this exists</p>
+        <p id="why" class="big" style="margin-top: 12px">No treatment has yet been proven to slow Parkinson's. <em>Exercise is the one with randomised-trial evidence pointing that way.</em><sup><a href="#refs">1, 2</a></sup></p>
+        <p class="muted" style="margin-top: 18px; max-width: 34em">But the trials don't agree on what to do, and nothing tracks aerobic exercise for Parkinson's specifically. So the practical questions go unanswered: which protocol, how hard, how long, and did today count?</p>
+      </div>
+      <div class="trials">
+        <div class="trial"><b><span class="dot" style="background: #FF4D5E"></span>SPARX</b><span>Treadmill · 4 days a week · 80–85% of max heart rate<sup><a href="#refs">1</a></sup></span></div>
+        <div class="trial"><b><span class="dot" style="background: #3D9BFF"></span>Park-in-Shape</b><span>Stationary bike at home · 3 days · 30–45 minutes<sup><a href="#refs">2</a></sup></span></div>
+        <div class="trial"><b><span class="dot" style="background: #3CCB7F"></span>Guidelines</b><span>150–300 minutes a week, moderate to vigorous<sup><a href="#refs">3</a></sup></span></div>
+      </div>
+    </section>
+
+    <section id="how" class="feature" aria-labelledby="f1">
+      <div class="copy">
+        <p class="label">A plan for you</p>
+        <h2 id="f1">Five questions land you on a published protocol.</h2>
+        <p>What you do now, the equipment you have, your days, your time, and how hard you want to work. PDZone shows the protocol that fits and says why, or lets you compare every plan with your own target on each.</p>
+        <p>Each plan shows its study: who was in it, what it found, and what it didn't.</p>
+      </div>
+      <div class="phone"><img src="img/p2-match.png" alt="The match screen: Park-in-Shape, three days a week, 40 minutes in zone, 111 to 146 beats per minute, with the reasons it fits." loading="lazy"></div>
+    </section>
+
+    <section class="feature flip" aria-labelledby="f2">
+      <div class="copy">
+        <p class="label">Your target</p>
+        <h2 id="f2">Zones from your own numbers.</h2>
+        <p>Set your max heart rate from a test, a past workout or a formula built for Parkinson's, and your resting rate from Apple Health. The target is different for the rower than for the treadmill, because your heart rate is.</p>
+      </div>
+      <div class="phone"><img src="img/r7-zones.png" alt="The zones screen: five coloured rungs from very light to maximum, with the target rung tagged." loading="lazy"></div>
+    </section>
+
+    <section class="feature" aria-labelledby="f3">
+      <div class="copy">
+        <p class="label">During the workout</p>
+        <h2 id="f3">A dial shows where you are. Coaching says what to change.</h2>
+        <p>One tap starts today's session. The dial shows your heart rate against the target, and short spoken prompts tell you to pick it up, hold, or ease off. It works on the phone, turned sideways on a rower, or on Apple Watch with the phone left behind.</p>
+      </div>
+      <div class="phone"><img src="img/p5-hud.png" alt="The workout screen: a half-circle dial of heart-rate zones with a needle at 142, time in zone, and a coaching line." loading="lazy"></div>
+    </section>
+
+    <section class="feature flip" aria-labelledby="f4">
+      <div class="copy">
+        <p class="label">On the watch</p>
+        <h2 id="f4">The same dial on your wrist.</h2>
+        <p>The watch runs the session by itself, records it to Apple Health, and sends the result back to the phone.</p>
+      </div>
+      <div class="watch"><img src="img/watch.png" alt="The Apple Watch screen: the zone dial with 148 in the target, and time in zone below." loading="lazy"></div>
+    </section>
+
+    <section class="feature" aria-labelledby="f5">
+      <div class="copy">
+        <p class="label">Credit for what you already do</p>
+        <h2 id="f5">Record with whatever you use.</h2>
+        <p>If Strava, Garmin, Peloton, WHOOP or your watch saves a workout to Apple Health, PDZone reads its heart rate and scores it against the plan you were following that day. It happens when you open the app. There is nothing to type in.</p>
+        <ul>
+          <li>Time at or above your target counts.</li>
+          <li>Each workout keeps the target it was scored with.</li>
+          <li>Your workouts stay on your phone.</li>
+        </ul>
+      </div>
+      <div class="phone"><img src="img/p7-history.png" alt="The History screen, with a note that four new workouts came in from Apple Health and were scored against the plan." loading="lazy"></div>
+    </section>
+
+    <section id="signup" aria-labelledby="s1">
+      <div class="signup">
+        <div style="display: grid; gap: 12px">
+          <p class="label">Get updates</p>
+          <h2 id="s1">Want to know when it's ready?</h2>
+          <p class="muted">Leave an email and we'll write when PDZone opens for testing and when it reaches the App Store. A few emails at most.</p>
+        </div>
+        <!-- Buttondown's subscribe address goes in `action`. It is a plain form post, as Buttondown asks:
+             the person may need to finish a check on Buttondown's own page, which opens in a new tab. -->
+        <form id="form" action="" method="post" target="_blank" novalidate>
+          <input type="hidden" name="tag" value="website">
+          <label>Email
+            <input type="email" name="email" id="email" autocomplete="email" required aria-describedby="result">
+          </label>
+          <label>I am (optional)
+            <select name="metadata__role" id="role">
+              <option value="">Prefer not to say</option>
+              <option>A person with Parkinson's</option>
+              <option>A care partner or family member</option>
+              <option>A clinician or therapist</option>
+              <option>A researcher</option>
+              <option>Someone else</option>
+            </select>
+          </label>
+          <label class="check"><input type="checkbox" name="metadata__tester" value="yes" id="tester"><span>I'd like to help test it on my own iPhone.</span></label>
+          <button class="button" type="submit">Keep me posted</button>
+          <p id="result" role="status" aria-live="polite"></p>
+          <p class="note">We use your email only to send these updates, and you can ask us to delete it at any time. Please don't send health information through this form.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong style="color: var(--ink)">PDZone is not medical advice and not a medical device.</strong> It does not diagnose, treat or prevent any condition, and it does not advise on medication. Talk to your clinician before starting hard exercise. Screens on this page show test data.</p>
+    <ol id="refs">
+      <li>Schenkman M, et al. Effect of high-intensity treadmill exercise on motor symptoms in patients with de novo Parkinson disease: a phase 2 randomized clinical trial. <cite>JAMA Neurology</cite> 2018. <a href="https://doi.org/10.1001/jamaneurol.2017.3517">doi:10.1001/jamaneurol.2017.3517</a></li>
+      <li>van der Kolk NM, et al. Effectiveness of home-based and remotely supervised aerobic exercise in Parkinson's disease: a double-blind, randomised controlled trial. <cite>Lancet Neurology</cite> 2019. <a href="https://doi.org/10.1016/S1474-4422(19)30285-6">doi:10.1016/S1474-4422(19)30285-6</a></li>
+      <li>Bull FC, et al. World Health Organization 2020 guidelines on physical activity and sedentary behaviour. <cite>British Journal of Sports Medicine</cite> 2020. <a href="https://doi.org/10.1136/bjsports-2020-102955">doi:10.1136/bjsports-2020-102955</a></li>
+    </ol>
+    <p>These were six-month trials of motor signs and a general activity guideline. They suggest benefit; they are not proof that exercise slows Parkinson's.</p>
+    <p>© 2026 PDZone.</p>
+  </footer>
+</div>
+
+<script>
+// The form posts straight to Buttondown, the address in its `action`. This only checks the email
+// first, and says so plainly if the address hasn't been filled in yet.
+document.getElementById("form").addEventListener("submit", (event) => {
+  const form = event.target;
+  const result = document.getElementById("result");
+  const email = document.getElementById("email");
+  if (!email.value || !email.checkValidity()) {
+    event.preventDefault();
+    result.textContent = "Please enter an email address.";
+    result.style.color = "#FFC670";
+    email.focus();
+    return;
+  }
+  if (!form.getAttribute("action")) {
+    event.preventDefault();
+    result.textContent = "Sign-up isn't connected yet, so nothing was saved.";
+    result.style.color = "#FFC670";
+    return;
+  }
+  result.textContent = "Thanks. Buttondown has opened in a new tab to finish signing you up.";
+  result.style.color = "#F5EFF2";
+});
+</script>
+</body>
+</html>
