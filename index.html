@@ -45,13 +45,6 @@ header.top { display: flex; align-items: center; justify-content: space-between;
 .reel { justify-self: center; width: min(320px, 78vw); aspect-ratio: 9 / 16; border-radius: 30px; overflow: hidden; background: #000; box-shadow: 0 0 0 1px var(--line); }
 .reel video { width: 100%; height: 100%; display: block; object-fit: cover; }
 section { padding: 64px 0; border-top: 1px solid var(--line); }
-.evidence { display: grid; gap: 28px; }
-.evidence .big { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-weight: 700; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; }
-.evidence .big em { font-style: normal; color: var(--tulip); }
-.trials { display: grid; gap: 12px; }
-.trial { background: var(--surface); border-radius: 20px; padding: 18px 20px; display: grid; gap: 4px; }
-.trial b { font-family: "Bricolage Grotesque", system-ui, sans-serif; font-size: 20px; }
-.trial span { color: var(--muted); font-size: 15px; }
 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 999px; margin-right: 10px; }
 .feature { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
 .feature .copy { display: grid; gap: 14px; }
@@ -88,7 +81,6 @@ footer { padding: 40px 0 64px; border-top: 1px solid var(--line); color: var(--m
 footer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
 @media (min-width: 860px) {
   .hero { grid-template-columns: 1.25fr 1fr; padding: 56px 0 96px; }
-  .evidence { grid-template-columns: 1.2fr 1fr; align-items: start; }
   .feature { grid-template-columns: 1fr 1fr; gap: 56px; }
   .feature.flip .copy { order: 2; }
   .signup { padding: 48px; grid-template-columns: 1fr 1fr; align-items: start; }
@@ -124,19 +116,6 @@ footer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
         </video>
       </div>
     </div>
-
-    <section class="evidence" aria-labelledby="why">
-      <div>
-        <p class="label">Why this exists</p>
-        <p id="why" class="big" style="margin-top: 12px">No treatment has yet been proven to slow Parkinson's. <em>Exercise is the one with randomised-trial evidence pointing that way.</em><sup><a href="#refs">1, 2</a></sup></p>
-        <p class="muted" style="margin-top: 18px; max-width: 34em">But the trials don't agree on what to do, and nothing tracks aerobic exercise for Parkinson's specifically. So the practical questions go unanswered: which protocol, how hard, how long, and did today count?</p>
-      </div>
-      <div class="trials">
-        <div class="trial"><b><span class="dot" style="background: #FF4D5E"></span>SPARX</b><span>Treadmill · 4 days a week · 80–85% of max heart rate<sup><a href="#refs">1</a></sup></span></div>
-        <div class="trial"><b><span class="dot" style="background: #3D9BFF"></span>Park-in-Shape</b><span>Stationary bike at home · 3 days · 30–45 minutes<sup><a href="#refs">2</a></sup></span></div>
-        <div class="trial"><b><span class="dot" style="background: #3CCB7F"></span>Guidelines</b><span>150–300 minutes a week, moderate to vigorous<sup><a href="#refs">3</a></sup></span></div>
-      </div>
-    </section>
 
     <section id="how" class="feature" aria-labelledby="f1">
       <div class="copy">
@@ -224,6 +203,7 @@ footer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
 
   <footer>
     <p><strong style="color: var(--ink)">PDZone is not medical advice and not a medical device.</strong> It does not diagnose, treat or prevent any condition, and it does not advise on medication. Talk to your clinician before starting hard exercise. Screens on this page show test data.</p>
+    <p>The plans come from published work, including:</p>
     <ol id="refs">
       <li>Schenkman M, et al. Effect of high-intensity treadmill exercise on motor symptoms in patients with de novo Parkinson disease: a phase 2 randomized clinical trial. <cite>JAMA Neurology</cite> 2018. <a href="https://doi.org/10.1001/jamaneurol.2017.3517">doi:10.1001/jamaneurol.2017.3517</a></li>
       <li>van der Kolk NM, et al. Effectiveness of home-based and remotely supervised aerobic exercise in Parkinson's disease: a double-blind, randomised controlled trial. <cite>Lancet Neurology</cite> 2019. <a href="https://doi.org/10.1016/S1474-4422(19)30285-6">doi:10.1016/S1474-4422(19)30285-6</a></li>
