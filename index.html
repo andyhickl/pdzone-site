@@ -69,6 +69,13 @@ section { padding: 64px 0; border-top: 1px solid var(--line); }
 @media (prefers-reduced-motion: reduce) { .phone.long.play .page { animation: none; } }
 .watch { justify-self: center; width: min(250px, 62vw); border-radius: 58px; padding: 16px; background: #000; box-shadow: 0 0 0 2px var(--line); }
 .watch img { width: 100%; display: block; border-radius: 44px; }
+/* The watch's pages side by side; it swipes to each once when it comes into view, and rests on the dial. */
+.watch .face { overflow: hidden; border-radius: 44px; }
+.watch .strip { display: flex; transform: translateX(-100%); }
+.watch .strip img { flex: 0 0 100%; border-radius: 0; }
+.watch.pages.play .strip { animation: watch-swipe 9s ease-in-out 0.6s 1 both; }
+@keyframes watch-swipe { 0%, 8% { transform: translateX(-100%); } 18%, 42% { transform: translateX(-200%); } 52%, 58% { transform: translateX(-100%); } 68%, 88% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+@media (prefers-reduced-motion: reduce) { .watch.pages.play .strip { animation: none; } }
 .signup { background: var(--surface); border-radius: 28px; padding: 32px 24px; display: grid; gap: 22px; }
 form { display: grid; gap: 16px; max-width: 520px; }
 label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
@@ -138,7 +145,7 @@ footer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
         <p>What you do now, the equipment you have, your days, your time, and how hard you want to work. PDZone shows the protocol that fits and says why, or lets you compare every plan with your own target on each.</p>
         <p>Each plan shows its study: who was in it, what it found, and what it didn't.</p>
       </div>
-      <div class="phone long" style="--travel:-39.05%;--dur:5.5s"><img class="page" src="img/p2-match-long.webp" alt="The match screen: Park-in-Shape, three days a week, 40 minutes in zone, 111 to 146 beats per minute, with the reasons it fits." loading="lazy"><img class="top" src="img/p2-match-top.webp" alt="" loading="lazy"><img class="bar" src="img/p2-match-bar.webp" alt="" loading="lazy"></div>
+      <div class="phone long" style="--travel:-34.41%;--dur:4.8s"><img class="page" src="img/p2-match-long.webp" alt="The match screen: Park-in-Shape, three days a week, 40 minutes in zone, 111 to 146 beats per minute, with the reasons it fits." loading="lazy"><img class="top" src="img/p2-match-top.webp" alt="" loading="lazy"><img class="bar" src="img/p2-match-bar.webp" alt="" loading="lazy"></div>
     </section>
 
     <section class="feature flip" aria-labelledby="f2">
@@ -163,9 +170,9 @@ footer ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
       <div class="copy">
         <p class="label">On the watch</p>
         <h2 id="f4">The same dial on your wrist.</h2>
-        <p>The watch runs the session by itself, with the same dial and a page of minutes in each zone. It records the workout to Apple Health and sends the result back to the phone.</p>
+        <p>The watch runs the session by itself, with the same dial, a page of minutes in each zone, and a page of controls a swipe away. It records the workout to Apple Health and sends the result back to the phone.</p>
       </div>
-      <div class="watch"><img src="img/watch.png" alt="The Apple Watch screen: the same dial with 148 in the target, and the minutes at target below." loading="lazy"></div>
+      <div class="watch pages"><div class="face"><div class="strip"><img src="img/watch-controls.webp" alt="The watch's controls page: End, Pause, Mark and Lock." loading="lazy"><img src="img/watch-dial.webp" alt="The Apple Watch screen: the same dial with 148 in the target, and the minutes at target below." loading="lazy"><img src="img/watch-zones.webp" alt="The watch's zones page: minutes in each of five zones, with four minutes in zone 4." loading="lazy"></div></div></div>
     </section>
 
     <section class="feature" aria-labelledby="f5">
@@ -254,7 +261,7 @@ document.getElementById("form").addEventListener("submit", (event) => {
 <script>
 // Scroll each long screen once, the first time most of it is on screen.
 (function () {
-  var phones = document.querySelectorAll('.phone.long');
+  var phones = document.querySelectorAll('.phone.long, .watch.pages');
   if (!('IntersectionObserver' in window)) return;
   var seen = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
